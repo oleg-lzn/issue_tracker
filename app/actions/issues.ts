@@ -1,31 +1,12 @@
 'use server'
 
 import { db } from '@/db'
-import { issues } from '@/db/schema'
+import { issues, IssueSchema } from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import { getCurrentUser } from '@/lib/dal'
-import { z } from 'zod'
 import { mockDelay } from '@/lib/utils'
 import { revalidateTag } from 'next/cache'
-
-// Define Zod schema for issue validation
-const IssueSchema = z.object({
-  title: z
-    .string()
-    .min(3, 'Title must be at least 3 characters')
-    .max(100, 'Title must be less than 100 characters'),
-
-  description: z.string().optional().nullable(),
-
-  status: z.enum(['backlog', 'todo', 'in_progress', 'done'], {
-    errorMap: () => ({ message: 'Please select a valid status' }),
-  }),
-
-  priority: z.enum(['low', 'medium', 'high'], {
-    errorMap: () => ({ message: 'Please select a valid priority' }),
-  }),
-  userId: z.string().min(1, 'User ID is required'),
-})
+import { z } from 'zod'
 
 export type IssueData = z.infer<typeof IssueSchema>
 
@@ -123,7 +104,7 @@ export const updateIssue = async (
     //   updateData.priority = validatedData.priority
 
     // update an issue
-    await db.udpate(issues).set(updateData).where(eq(issues.id, id))
+    await db.update(issues).set(updateData).where(eq(issues.id, id))
 
     return {
       success: true,

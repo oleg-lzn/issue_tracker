@@ -1,11 +1,11 @@
-import { getCurrentUser, getIssues } from '@/lib/dal'
+import { getIssues } from '@/lib/dal'
 import Link from 'next/link'
 import Button from '../components/ui/Button'
 import { PlusIcon } from 'lucide-react'
 import Badge from '../components/ui/Badge'
-import { formatRelativeTime } from '@/lib/utils'
 import { Priority, Status } from '@/lib/types'
 import { ISSUE_STATUS, ISSUE_PRIORITY } from '@/db/schema'
+import TimeCreatedAt from '../components/TimeCreatedAt'
 
 export default async function DashboardPage() {
   const issues = await getIssues()
@@ -57,7 +57,7 @@ export default async function DashboardPage() {
                     </Badge>
                   </div>
                   <div className="col-span-3 text-sm text-gray-500 dark:text-gray-400">
-                    {formatRelativeTime(new Date(issue.createdAt))}
+                    <TimeCreatedAt dateTime={issue?.createdAt} />
                   </div>
                 </div>
               </Link>

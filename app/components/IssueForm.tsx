@@ -83,18 +83,6 @@ export default function IssueForm({
   const statusOptions = Object.values(ISSUE_STATUS)
   const priorityOptions = Object.values(ISSUE_PRIORITY)
 
-  // const statusOptions = Object.values(ISSUE_STATUS).map(({ label, value }) => ({
-  //   label,
-  //   value,
-  // }))
-
-  // const priorityOptions = Object.values(ISSUE_PRIORITY).map(
-  //   ({ label, value }) => ({
-  //     label,
-  //     value,
-  //   })
-  // )
-
   return (
     <Form action={formAction}>
       {state?.message && (

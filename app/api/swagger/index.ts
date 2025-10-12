@@ -1,13 +1,18 @@
+// app/swagger/index.ts
 import { createSwaggerSpec } from 'next-swagger-doc'
+import { issueSwagger } from './docs/issue.swagger'
 
 export const getApiDocs = async () => {
-  const spec = createSwaggerSpec({
+  return createSwaggerSpec({
     apiFolder: 'app/api',
     definition: {
       openapi: '3.0.0',
       info: {
-        title: 'Next Swagger API Example',
-        version: '1.0',
+        title: 'My API',
+        version: '1.0.0',
+      },
+      paths: {
+        ...issueSwagger,
       },
       components: {
         securitySchemes: {
@@ -18,8 +23,6 @@ export const getApiDocs = async () => {
           },
         },
       },
-      security: [],
     },
   })
-  return spec
 }
