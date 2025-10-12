@@ -5,6 +5,8 @@ import { db } from '@/db'
 import { users } from '@/db/schema'
 import * as jose from 'jose'
 import { cache } from 'react'
+import { randomBytes } from 'crypto'
+import bcrypt from 'bcryptjs'
 
 // JWT types
 interface JWTPayload {
@@ -26,6 +28,15 @@ const REFRESH_THRESHOLD = 24 * 60 * 60 // 24 hours in seconds
 // Hash a password
 export async function hashPassword(password: string) {
   return hash(password, 10)
+}
+
+export async function generateFakePassword() {
+  return await bcrypt.hash(randomBytes(16).toString('hex'), 10)
+}
+
+export function generateRandomId() {
+  const id = nanoid()
+  return id
 }
 
 // Verify a password

@@ -1,4 +1,5 @@
 'use client'
+
 import Link from 'next/link'
 import { useActionState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -12,6 +13,9 @@ import {
 } from '@/app/components/ui/Form'
 import toast from 'react-hot-toast'
 import { signUp, ActionResponse, signIn } from '@/app/actions/auth'
+import Image from 'next/image'
+import google_SU from '../../assets/images/google_SU.png'
+import { handleGoogleLogin } from '@/lib/googleAuth'
 
 const initialState: ActionResponse = {
   success: false,
@@ -125,6 +129,22 @@ export default function SignUpPage() {
             <div>
               <Button type="submit" className="w-full" isLoading={isPending}>
                 Sign up
+              </Button>
+            </div>
+            <div>
+              <Button
+                type="button"
+                className="w-full flex justify-center items-center p-0 bg-transparent border-0 shadow-none focus:outline-none hover:bg-transparent active:bg-transparent"
+                isLoading={isPending}
+                style={{ minHeight: 0, height: 'auto' }}
+                onClick={handleGoogleLogin}
+              >
+                <Image
+                  src={google_SU}
+                  alt="Google Sign Up"
+                  className=""
+                  style={{ display: 'inline-block' }}
+                />
               </Button>
             </div>
           </Form>

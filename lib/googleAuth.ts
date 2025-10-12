@@ -1,20 +1,5 @@
-import NextAuth from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
-import { createSession } from './auth'
+'use client'
 
-const handler = NextAuth({
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-  ],
-  callbacks: {
-    async createSession({}) {
-      session.user.id = token.sub
-      return session
-    },
-  },
-})
-
-export { handler as GET, handler as POST }
+export const handleGoogleLogin = () => {
+  window.location.href = '/api/auth/google'
+}

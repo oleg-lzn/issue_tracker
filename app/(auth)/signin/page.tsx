@@ -13,6 +13,9 @@ import {
 } from '@/app/components/ui/Form'
 import toast from 'react-hot-toast'
 import { ActionResponse, signIn } from '@/app/actions/auth'
+import Image from 'next/image'
+import google_SI from '../../assets/images/google_SI.png'
+import { handleGoogleLogin } from '@/lib/googleAuth'
 
 const initialState: ActionResponse = {
   success: false,
@@ -22,7 +25,6 @@ const initialState: ActionResponse = {
 
 export default function SignInPage() {
   const router = useRouter()
-
   // Use useActionState hook for the form submission action
   const [state, formAction, isPending] = useActionState<
     ActionResponse,
@@ -107,6 +109,22 @@ export default function SignInPage() {
             <div>
               <Button type="submit" className="w-full" isLoading={isPending}>
                 Sign in
+              </Button>
+            </div>
+            <div>
+              <Button
+                type="button"
+                className="w-full flex justify-center items-center p-0 bg-transparent border-0 shadow-none focus:outline-none hover:bg-transparent active:bg-transparent"
+                isLoading={isPending}
+                style={{ minHeight: 0, height: 'auto' }}
+                onClick={handleGoogleLogin}
+              >
+                <Image
+                  src={google_SI}
+                  alt="Google Sign In"
+                  className=""
+                  style={{ display: 'inline-block' }}
+                />
               </Button>
             </div>
           </Form>
