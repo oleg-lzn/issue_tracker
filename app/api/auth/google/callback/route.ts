@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Missing code' }, { status: 400 })
   }
 
-  // 1️⃣ Получаем access_token
+  // Getting token from Google
   const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  // 2️⃣ Получаем профиль пользователя
+  // Getting user profile from token
   const profileRes = await fetch(
     'https://www.googleapis.com/oauth2/v2/userinfo',
     {
@@ -57,10 +57,10 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  // 3️⃣ Проверяем наличие пользователя
+  // Checking the user in the db
   let user = await db.query.users.findFirst({ where: eq(users.email, email) })
 
-  // Если нет — создаём
+  // If no user - creating a user and issuing a session
   if (!user) {
     const fakePassword = await generateFakePassword()
     const newId = generateRandomId()
@@ -72,9 +72,8 @@ export async function GET(request: NextRequest) {
     user = newUser
   }
 
-  // 4️⃣ Создаём JWT / сессию
   await createSession(user.id)
 
-  // 5️⃣ Редиректим
+  // Redirecting to the dashboard
   return NextResponse.redirect(new URL('/dashboard', request.url))
 }
