@@ -1,16 +1,20 @@
-import React from 'react'
 import Link from 'next/link'
 import { CheckCircle2, XCircle } from 'lucide-react'
+import { initI18n } from '@/i18n/server'
+import { initFunction } from '@/i18n/initFunction'
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const lang = await initFunction()
+  const { t } = await initI18n(lang)
+
   return (
     <div className="container mx-auto px-4 py-12 text-white">
       <div className="max-w-2xl mx-auto text-center mb-16">
         <h1 className="text-4xl font-bold mb-4 text-white">
-          Simple, Transparent Pricing
+          {t('Simple, Transparent Pricing')}
         </h1>
         <p className="text-xl text-gray-400 dark:text-gray-300">
-          Choose the plan that&apos;s right for you and your team
+          {t('Choose the plan that is right for you and your team')}
         </p>
       </div>
 
@@ -19,17 +23,19 @@ export default function PricingPage() {
         <PricingCard
           title="Free"
           price="$0"
-          description="Perfect for individuals and small teams getting started."
+          description={t(
+            'Perfect for individuals and small teams getting started.'
+          )}
           features={[
-            { name: 'Up to 3 team members', included: true },
-            { name: 'Unlimited issues', included: true },
-            { name: 'Basic issue tracking', included: true },
-            { name: 'Email support', included: true },
-            { name: 'API access', included: false },
-            { name: 'Custom fields', included: false },
-            { name: 'Advanced integrations', included: false },
+            { name: t('Up to 3 team members'), included: true },
+            { name: t('Unlimited issues'), included: true },
+            { name: t('Basic issue tracking'), included: true },
+            { name: t('Email support'), included: true },
+            { name: t('API access'), included: false },
+            { name: t('Custom fields'), included: false },
+            { name: t('Advanced integrations'), included: false },
           ]}
-          buttonText="Sign Up Free"
+          buttonText={t('Sign Up Free')}
           buttonLink="/auth/signup"
         />
 
@@ -37,18 +43,20 @@ export default function PricingPage() {
         <PricingCard
           title="Pro"
           price="$10"
-          period="per user / month"
-          description="For growing teams that need more features and flexibility."
+          period={t('per user / month')}
+          description={t(
+            'For growing teams that need more features and flexibility.'
+          )}
           features={[
-            { name: 'Unlimited team members', included: true },
-            { name: 'Unlimited issues', included: true },
-            { name: 'Advanced issue tracking', included: true },
-            { name: 'Priority support', included: true },
-            { name: 'API access', included: true },
-            { name: 'Custom fields', included: true },
-            { name: 'Advanced integrations', included: false },
+            { name: t('Unlimited team members'), included: true },
+            { name: t('Unlimited issues'), included: true },
+            { name: t('Advanced issue tracking'), included: true },
+            { name: t('Priority support'), included: true },
+            { name: t('API access'), included: true },
+            { name: t('Custom fields'), included: true },
+            { name: t('Advanced integrations'), included: false },
           ]}
-          buttonText="Coming Soon"
+          buttonText={t('Coming Soon')}
           buttonLink="#"
           highlighted
           badge="Popular"
@@ -58,33 +66,35 @@ export default function PricingPage() {
         <PricingCard
           title="Enterprise"
           price="Custom"
-          description="For organizations that need advanced security and support."
+          description={t(
+            'For organizations that need advanced security and support.'
+          )}
           features={[
-            { name: 'Unlimited team members', included: true },
-            { name: 'Unlimited issues', included: true },
-            { name: 'Advanced issue tracking', included: true },
-            { name: 'Dedicated support', included: true },
-            { name: 'API access', included: true },
-            { name: 'Custom fields', included: true },
-            { name: 'Advanced integrations', included: true },
+            { name: t('Unlimited team members'), included: true },
+            { name: t('Unlimited issues'), included: true },
+            { name: t('Advanced issue tracking'), included: true },
+            { name: t('Dedicated support'), included: true },
+            { name: t('API access'), included: true },
+            { name: t('Custom fields'), included: true },
+            { name: t('Advanced integrations'), included: true },
           ]}
-          buttonText="Contact Sales"
+          buttonText={t('Contact Sales')}
           buttonLink="mailto:sales@linearclone.com"
         />
       </div>
 
       <div className="max-w-3xl mx-auto mt-16 text-center bg-gray-800 rounded-lg p-8">
         <h2 className="text-2xl font-bold mb-4 text-white">
-          Need a custom solution?
+          {t('Need a custom solution?')}
         </h2>
         <p className="text-lg text-gray-400 dark:text-gray-300 mb-8">
-          Contact our sales team to discuss your specific requirements.
+          {t('Contact our sales team to discuss your specific requirements.')}
         </p>
         <a
           href="mailto:sales@linearclone.com"
           className="inline-flex h-10 items-center justify-center rounded-md bg-blue-600 px-8 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700"
         >
-          Contact Sales
+          {t('Contact Sales')}
         </a>
       </div>
     </div>
@@ -111,7 +121,7 @@ interface PricingCardProps {
 function PricingCard({
   title,
   price,
-  period = 'per month',
+  period,
   description,
   features,
   buttonText,

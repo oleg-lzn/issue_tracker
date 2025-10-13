@@ -19,7 +19,7 @@ export default async function MarketingLayout({
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-8">
             <Link href="/" className="text-xl font-bold">
-              Mode
+              {t('Issue Tracker')}
             </Link>
             <nav className="hidden md:flex gap-6">
               <Link
@@ -62,20 +62,22 @@ export default async function MarketingLayout({
         <div className="container mx-auto px-4 py-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
             <div>
-              <h3 className="text-lg font-semibold mb-4">Issue Tracker</h3>
+              <h3 className="text-lg font-semibold mb-4">
+                {t('Issue Tracker')}
+              </h3>
               <p className="text-sm text-gray-600">
-                A modern project management tool built with Next.js.
+                {t('A modern project management tool built with Next.js.')}
               </p>
             </div>
             <div>
-              <h3 className="text-sm font-semibold mb-4">Product</h3>
+              <h3 className="text-sm font-semibold mb-4">{t('Product')}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
                     href="/features"
                     className="text-sm text-gray-600 hover:text-purple-600"
                   >
-                    Features
+                    {t('Features')}
                   </Link>
                 </li>
                 <li>
@@ -83,7 +85,7 @@ export default async function MarketingLayout({
                     href="/pricing"
                     className="text-sm text-gray-600 hover:text-purple-600"
                   >
-                    Pricing
+                    {t('Pricing')}
                   </Link>
                 </li>
                 <li>
@@ -91,43 +93,43 @@ export default async function MarketingLayout({
                     href="/faq"
                     className="text-sm text-gray-600 hover:text-purple-600"
                   >
-                    FAQ
+                    {t('FAQ')}
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold mb-4">Resources</h3>
+              <h3 className="text-sm font-semibold mb-4">{t('Resources')}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
                     href="/docs"
                     className="text-sm text-gray-600 hover:text-purple-600"
                   >
-                    Documentation
+                    {t('Documentation')}
                   </Link>
                 </li>
                 <li>
                   <a
-                    href="https://github.com/yourusername/mode"
+                    href="https://github.com/oleg-lzn/issue_tracker"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-gray-600 hover:text-purple-600"
                   >
-                    GitHub
+                    {t('GitHub')}
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold mb-4">Legal</h3>
+              <h3 className="text-sm font-semibold mb-4">{t('Legal')}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
                     href="/terms"
                     className="text-sm text-gray-600 hover:text-purple-600"
                   >
-                    Terms of Service
+                    {t('Terms of Service')}
                   </Link>
                 </li>
               </ul>
