@@ -102,5 +102,8 @@
   "Issue title": "Заголовок задачи",
   "Describe the issue...": "Описание задачи...",
   "An error occurred": "Ошибка при выполнении операции",
-  "Description": "Описание"
+  "Description": "Описание",
+  "Issue tracking": "Трекер Задач",
+  "simplified": "С кайфом!",
+  "A minimal and elegant issue tracking tool for modern teams. Manage your projects with ease.": "Минимальный и элегантный инструмент для отслеживания задач для современных команд. Управляйте своими проектами с легкостью."
 }

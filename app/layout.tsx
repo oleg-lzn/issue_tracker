@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import { getDirection } from '../i18n/settings'
-import { cookies } from 'next/headers'
+import { initFunction } from '@/i18n/initFunction'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,8 +20,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const cookieStore = await cookies()
-  const lang = cookieStore.get('lang')?.value || 'en'
+  const lang = await initFunction()
   const dir = getDirection(lang)
 
   return (
