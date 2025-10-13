@@ -30,10 +30,12 @@ export async function hashPassword(password: string) {
   return hash(password, 10)
 }
 
+//Generate fakePassword for Google Auth
 export async function generateFakePassword() {
   return await bcrypt.hash(randomBytes(16).toString('hex'), 10)
 }
 
+//Generate user Id for Google Auth
 export function generateRandomId() {
   const id = nanoid()
   return id

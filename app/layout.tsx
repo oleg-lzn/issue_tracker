@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
-import { dir } from 'i18next'
-import { languages } from '../i18n/settings'
+import { getDirection, languages } from '../i18n/settings'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,12 +19,14 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
+  params: { lng },
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const dir = getDirection(lng)
   return (
-    <html lang="en">
+    <html lang={lng} dir={dir}>
       <body className={`${inter.variable} font-sans antialiased`}>
         <Toaster position="top-right" />
         {children}

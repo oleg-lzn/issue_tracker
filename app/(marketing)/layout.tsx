@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Timestamp } from '../components/Timestamp'
 import Button from '../components/ui/Button'
+import LanguageSwitcher from '../components/LanguageSwitcher'
 
 export default async function MarketingLayout({
   children,
@@ -44,6 +45,7 @@ export default async function MarketingLayout({
               <Link href="/signup">
                 <Button>Sign up</Button>
               </Link>
+              <LanguageSwitcher />
             </div>
           </div>
         </div>
