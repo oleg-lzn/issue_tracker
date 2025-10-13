@@ -18,6 +18,8 @@ import {
   updateIssue,
   type ActionResponse,
 } from '@/app/actions/issues'
+import { useClientTranslation } from '@/i18n/client'
+import { getLangFromCookie } from '@/i18n/initClientFunction'
 
 interface IssueFormProps {
   issue?: Issue
@@ -37,7 +39,8 @@ export default function IssueForm({
   isEditing = false,
 }: IssueFormProps) {
   const router = useRouter()
-
+  const lang = getLangFromCookie()
+  const { t } = useClientTranslation(lang)
   // Use useActionState hook for the form submission action
   const [state, formAction, isPending] = useActionState<
     ActionResponse,
@@ -96,11 +99,11 @@ export default function IssueForm({
       )}
 
       <FormGroup>
-        <FormLabel htmlFor="title">Title</FormLabel>
+        <FormLabel htmlFor="title">{t('Title')}</FormLabel>
         <FormInput
           id="title"
           name="title"
-          placeholder="Issue title"
+          placeholder={t('Issue title')}
           defaultValue={issue?.title || ''}
           required
           minLength={3}
@@ -117,11 +120,11 @@ export default function IssueForm({
       </FormGroup>
 
       <FormGroup>
-        <FormLabel htmlFor="description">Description</FormLabel>
+        <FormLabel htmlFor="description">{t('Description')}</FormLabel>
         <FormTextarea
           id="description"
           name="description"
-          placeholder="Describe the issue..."
+          placeholder={t('Describe the issue...')}
           rows={4}
           defaultValue={issue?.description || ''}
           disabled={isPending}
@@ -137,7 +140,7 @@ export default function IssueForm({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <FormGroup>
-          <FormLabel htmlFor="status">Status</FormLabel>
+          <FormLabel htmlFor="status">{t('Status')}</FormLabel>
           <FormSelect
             id="status"
             name="status"
@@ -156,7 +159,7 @@ export default function IssueForm({
         </FormGroup>
 
         <FormGroup>
-          <FormLabel htmlFor="priority">Priority</FormLabel>
+          <FormLabel htmlFor="priority">{t('Priority')}</FormLabel>
           <FormSelect
             id="priority"
             name="priority"
@@ -182,10 +185,10 @@ export default function IssueForm({
           onClick={() => router.back()}
           disabled={isPending}
         >
-          Cancel
+          {t('Cancel')}
         </Button>
         <Button type="submit" isLoading={isPending}>
-          {isEditing ? 'Update Issue' : 'Create Issue'}
+          {isEditing ? t('Update Issue') : t('Create Issue')}
         </Button>
       </div>
     </Form>

@@ -6,6 +6,8 @@ import Button from './ui/Button'
 import { Trash2Icon } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { deleteIssue } from '@/app/actions/issues'
+import { useClientTranslation } from '@/i18n/client'
+import { getLangFromCookie } from '@/i18n/initClientFunction'
 
 interface DeleteIssueButtonProps {
   id: number
@@ -15,21 +17,23 @@ export default function DeleteIssueButton({ id }: DeleteIssueButtonProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [showConfirm, setShowConfirm] = useState(false)
+  const lang = getLangFromCookie()
+  const { t } = useClientTranslation(lang)
 
   const handleDelete = async () => {
     startTransition(async () => {
       try {
         const result = await deleteIssue(id)
 
-        if (!result.success) {
-          throw new Error(result.error || 'Failed to delete issue')
+        if (!result?.success) {
+          throw new Error(result?.message || 'Failed to delete issue')
         }
 
-        toast.success('Issue deleted successfully')
+        toast.success(t('Issue deleted successfully'))
         router.push('/dashboard')
         router.refresh()
       } catch (error) {
-        toast.error('Failed to delete issue')
+        toast.error(t('Failed to delete issue'))
         console.error('Error deleting issue:', error)
       }
     })
@@ -44,7 +48,7 @@ export default function DeleteIssueButton({ id }: DeleteIssueButtonProps) {
           onClick={() => setShowConfirm(false)}
           disabled={isPending}
         >
-          Cancel
+          {t('Cancel')}
         </Button>
         <Button
           variant="danger"
@@ -52,7 +56,7 @@ export default function DeleteIssueButton({ id }: DeleteIssueButtonProps) {
           onClick={handleDelete}
           isLoading={isPending}
         >
-          Delete
+          {t('Delete')}
         </Button>
       </div>
     )
@@ -62,7 +66,7 @@ export default function DeleteIssueButton({ id }: DeleteIssueButtonProps) {
     <Button variant="outline" size="sm" onClick={() => setShowConfirm(true)}>
       <span className="flex items-center">
         <Trash2Icon size={16} className="mr-1" />
-        Delete
+        {t('Delete')}
       </span>
     </Button>
   )

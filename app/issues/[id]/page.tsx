@@ -7,6 +7,8 @@ import Badge from '@/app/components/ui/Badge'
 import Button from '@/app/components/ui/Button'
 import { ArrowLeftIcon, Edit2Icon } from 'lucide-react'
 import DeleteIssueButton from '../../components/DeleteIssueButton'
+import { initI18n } from '@/i18n/server'
+import { initFunction } from '@/i18n/initFunction'
 
 export default async function IssuePage({
   params,
@@ -14,6 +16,8 @@ export default async function IssuePage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
+  const lang = await initFunction()
+  const { t } = await initI18n(lang)
   const issue = await getIssue(parseInt(id))
 
   if (!issue) {
@@ -59,7 +63,7 @@ export default async function IssuePage({
           className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 mb-4"
         >
           <ArrowLeftIcon size={16} className="mr-1" />
-          Back to Issues
+          {t('Back to Issues')}
         </Link>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <h1 className="text-3xl font-bold">{title}</h1>
@@ -68,7 +72,7 @@ export default async function IssuePage({
               <Button variant="outline" size="sm">
                 <span className="flex items-center">
                   <Edit2Icon size={16} className="mr-1" />
-                  Edit
+                  {t('Edit')}
                 </span>
               </Button>
             </Link>
@@ -84,11 +88,11 @@ export default async function IssuePage({
             {getPriorityLabel(priority)}
           </Badge>
           <div className="text-sm text-gray-500">
-            Created {formatRelativeTime(new Date(createdAt))}
+            {t('Created')} {formatRelativeTime(new Date(createdAt))}
           </div>
           {updatedAt !== createdAt && (
             <div className="text-sm text-gray-500">
-              Updated {formatRelativeTime(new Date(updatedAt))}
+              {t('Updated')} {formatRelativeTime(new Date(updatedAt))}
             </div>
           )}
         </div>
@@ -98,31 +102,39 @@ export default async function IssuePage({
             <p className="whitespace-pre-line">{description}</p>
           </div>
         ) : (
-          <p className="text-gray-500 italic">No description provided.</p>
+          <p className="text-gray-500 italic">
+            {t('No description provided.')}
+          </p>
         )}
       </div>
 
       <div className="bg-white dark:bg-dark-elevated border border-gray-200 dark:border-dark-border-default rounded-lg shadow-sm p-6">
-        <h2 className="text-lg font-medium mb-2">Details</h2>
+        <h2 className="text-lg font-medium mb-2">{t('Details')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <p className="text-sm font-medium text-gray-500 mb-1">
-              Assigned to
+              {t('Assigned to')}
             </p>
             <p>{user.email}</p>
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-500 mb-1">Status</p>
+            <p className="text-sm font-medium text-gray-500 mb-1">
+              {t('Status')}
+            </p>
             <Badge status={status as Status}>{getStatusLabel(status)}</Badge>
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-500 mb-1">Priority</p>
+            <p className="text-sm font-medium text-gray-500 mb-1">
+              {t('Priority')}
+            </p>
             <Badge priority={priority as Priority}>
               {getPriorityLabel(priority)}
             </Badge>
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-500 mb-1">Created</p>
+            <p className="text-sm font-medium text-gray-500 mb-1">
+              {t('Created')}
+            </p>
             <p>{formatRelativeTime(new Date(createdAt))}</p>
           </div>
         </div>
