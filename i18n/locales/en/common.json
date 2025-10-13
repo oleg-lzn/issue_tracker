@@ -60,5 +60,16 @@
   "How do I report bugs or request features?": "How do I report bugs or request features?",
   "You can report bugs or request features by opening an issue on our GitHub repository. We appreciate your feedback and contributions!": "You can report bugs or request features by opening an issue on our GitHub repository. We appreciate your feedback and contributions!",
   "What technologies does Issue Tracker use?": "What technologies does Issue Tracker use?",
-  "Issue Tracker is built with Next.js, TypeScript, Tailwind CSS, and uses a PostgreSQL database. It leverages the latest features of Next.js App Router for optimal performance.": "Issue Tracker is built with Next.js, TypeScript, Tailwind CSS, and uses a PostgreSQL database. It leverages the latest features of Next.js App Router for optimal performance."
+  "Issue Tracker is built with Next.js, TypeScript, Tailwind CSS, and uses a PostgreSQL database. It leverages the latest features of Next.js App Router for optimal performance.": "Issue Tracker is built with Next.js, TypeScript, Tailwind CSS, and uses a PostgreSQL database. It leverages the latest features of Next.js App Router for optimal performance.",
+  "Signed in successfully": "Signed in successfully",
+  "Sign in to your account": "Sign in to your account",
+  "Email": "Email",
+  "Password": "Password",
+  "Sign in": "Sign in",
+  "Do not have an account?": "Do not have an account?",
+  "Account created successfully": "Account created successfully",
+  "Error during Signing Up": "Error during Signing Up",
+  "Create a new account": "Create a new account",
+  "Confirm Password": "Confirm Password",
+  "Already have an account?": "Already have an account?"
 }

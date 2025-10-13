@@ -16,6 +16,8 @@ import { signUp, ActionResponse, signIn } from '@/app/actions/auth'
 import Image from 'next/image'
 import google_SU from '../../assets/images/google_SU.png'
 import { handleGoogleLogin } from '@/lib/googleAuth'
+import { getLangFromCookie } from '@/i18n/initClientFunction'
+import { useClientTranslation } from '@/i18n/client'
 
 const initialState: ActionResponse = {
   success: false,
@@ -25,6 +27,8 @@ const initialState: ActionResponse = {
 
 export default function SignUpPage() {
   const router = useRouter()
+  const lang = getLangFromCookie()
+  const { t } = useClientTranslation(lang)
 
   const [state, formAction, isPending] = useActionState<
     ActionResponse,
@@ -34,7 +38,7 @@ export default function SignUpPage() {
       const result = await signUp(formData)
 
       if (result.success) {
-        toast.success('Account created successfully')
+        toast.success(t('Account created successfully'))
         await signIn(formData)
         router.replace('/dashboard')
       }
@@ -53,10 +57,10 @@ export default function SignUpPage() {
     <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#121212]">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h1 className="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
-          Mode
+          Issue Tracker
         </h1>
         <h2 className="mt-2 text-center text-2xl font-bold text-gray-900 dark:text-white">
-          Create a new account
+          {t('Create a new account')}
         </h2>
       </div>
 
@@ -68,7 +72,7 @@ export default function SignUpPage() {
             )}
 
             <FormGroup>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel htmlFor="email">{t('Email')}</FormLabel>
               <FormInput
                 id="email"
                 name="email"
@@ -87,7 +91,7 @@ export default function SignUpPage() {
             </FormGroup>
 
             <FormGroup>
-              <FormLabel htmlFor="password">Password</FormLabel>
+              <FormLabel htmlFor="password">{t('Password')}</FormLabel>
               <FormInput
                 id="password"
                 name="password"
@@ -106,7 +110,9 @@ export default function SignUpPage() {
             </FormGroup>
 
             <FormGroup>
-              <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
+              <FormLabel htmlFor="confirmPassword">
+                {t('Confirm Password')}
+              </FormLabel>
               <FormInput
                 id="confirmPassword"
                 name="confirmPassword"
@@ -128,7 +134,7 @@ export default function SignUpPage() {
 
             <div>
               <Button type="submit" className="w-full" isLoading={isPending}>
-                Sign up
+                {t('Sign up')}
               </Button>
             </div>
             <div>
@@ -150,12 +156,12 @@ export default function SignUpPage() {
           </Form>
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Already have an account?{' '}
+              {t('Already have an account?')}{' '}
               <Link
                 href="/signin"
                 className="font-medium text-gray-900 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
               >
-                Sign in
+                {t('Sign in')}
               </Link>
             </p>
           </div>
