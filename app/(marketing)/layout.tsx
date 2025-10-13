@@ -2,12 +2,17 @@ import Link from 'next/link'
 import { Timestamp } from '../components/Timestamp'
 import Button from '../components/ui/Button'
 import LanguageSwitcher from '../components/LanguageSwitcher'
+import { initI18n } from '@/i18n/server'
+import { initFunction } from '@/i18n/initFunction'
 
 export default async function MarketingLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const lang = await initFunction()
+  const { t } = await initI18n(lang)
+
   return (
     <div className="flex min-h-screen flex-col">
       <header className="border-b border-gray-200 dark:border-dark-border-subtle bg-white dark:bg-dark-base">
@@ -21,29 +26,29 @@ export default async function MarketingLayout({
                 href="/features"
                 className="text-sm font-medium hover:text-purple-600"
               >
-                Features
+                {t('Features')}
               </Link>
               <Link
                 href="/pricing"
                 className="text-sm font-medium hover:text-purple-600"
               >
-                Pricing
+                {t('Pricing')}
               </Link>
               <Link
                 href="/faq"
                 className="text-sm font-medium hover:text-purple-600"
               >
-                FAQ
+                {t('FAQ')}
               </Link>
             </nav>
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center space-x-4">
               <Link href="/signin">
-                <Button variant="outline">Sign in</Button>
+                <Button variant="outline">{t('Sign In')}</Button>
               </Link>
               <Link href="/signup">
-                <Button>Sign up</Button>
+                <Button>{t('Sign up')}</Button>
               </Link>
               <LanguageSwitcher />
             </div>

@@ -22,6 +22,7 @@
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.39.3",
     "i18next": "^25.6.0",
+    "i18next-resources-to-backend": "^1.2.1",
     "jose": "^6.0.6",
     "lucide-react": "^0.475.0",
     "nanoid": "^5.1.2",

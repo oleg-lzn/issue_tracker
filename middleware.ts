@@ -4,6 +4,17 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   // Api routes protection
   const { pathname } = request.nextUrl
+  const response = NextResponse.next()
+
+  // Language middleware
+  const lang = request.cookies.get('lang')?.value
+
+  if (!lang) {
+    response.cookies.set('lang', 'en', {
+      path: '/',
+      maxAge: 31536000,
+    })
+  }
 
   // Allowing Google Authentication
   if (pathname.startsWith('/api/auth')) {
@@ -34,9 +45,14 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/signin', request.url))
   }
 
-  return NextResponse.next()
+  return response
 }
 
 export const config = {
-  matcher: ['/api/:path*', '/dashboard/:path*', '/issues/:path*'],
+  matcher: [
+    '/api/:path*',
+    '/dashboard/:path*',
+    '/issues/:path*',
+    '/((?!_next|api|favicon.ico).*)',
+  ],
 }

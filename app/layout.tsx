@@ -2,31 +2,30 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
-import { getDirection, languages } from '../i18n/settings'
+import { getDirection } from '../i18n/settings'
+import { cookies } from 'next/headers'
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
 })
 
-export async function generateStaticParams() {
-  return languages.map((lng) => ({ lng }))
-}
-
 export const metadata: Metadata = {
   title: 'Issue Tracker',
   description: 'A modern issue tracking application built with Next.js 15',
 }
 
-export default function RootLayout({
-  params: { lng },
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const dir = getDirection(lng)
+  const cookieStore = await cookies()
+  const lang = cookieStore.get('lang')?.value || 'en'
+  const dir = getDirection(lang)
+
   return (
-    <html lang={lng} dir={dir}>
+    <html lang={lang} dir={dir}>
       <body className={`${inter.variable} font-sans antialiased`}>
         <Toaster position="top-right" />
         {children}

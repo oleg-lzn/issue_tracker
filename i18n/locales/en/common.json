@@ -1,5 +1,15 @@
 {
-  "welcome": "Welcome to our site!",
-  "language": "Language",
-  "login": "Sign In"
+  "Sign up": "Sign up",
+  "Sign In": "Sign In",
+  "Sign Out": "Sign Out",
+  "Features": "Features",
+  "Pricing": "Pricing",
+  "FAQ": "FAQ",
+  "Welcome to our site!": "Welcome to our site!",
+  "Language": "Language",
+  "Get Started": "Get Started",
+  "Product": "Product",
+  "Documentation": "Documentation",
+  "Legal": "Legal",
+  "Terms of Service": "Terms of Service"
 }

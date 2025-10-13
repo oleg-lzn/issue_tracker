@@ -1,13 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
 import { Globe, ChevronDown } from 'lucide-react'
 import Button from '../components/ui/Button'
+import { useRouter } from 'next/navigation'
 
 export default function LanguageSwitcher() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [currentLang, setCurrentLang] = useState('en')
   const router = useRouter()
-  const pathname = usePathname()
 
   const languages = [
     { code: 'en', label: 'English', flag: '🇬🇧' },
@@ -15,28 +16,32 @@ export default function LanguageSwitcher() {
     { code: 'he', label: 'עברית', flag: '🇮🇱' },
   ]
 
-  const currentLang = pathname.startsWith('/ru')
-    ? 'ru'
-    : pathname.startsWith('/he')
-    ? 'he'
-    : 'en'
+  useEffect(() => {
+    const cookieLang = document.cookie
+      .split('; ')
+      .find((r) => r.startsWith('lang='))
+      ?.split('=')[1]
+    if (cookieLang) setCurrentLang(cookieLang)
+  }, [])
 
-  const basePath = pathname.replace(/^\/(en|ru|he)/, '') || '/'
-  const [isOpen, setIsOpen] = useState(false)
   const current = languages.find((l) => l.code === currentLang)
 
-  // Закрытие dropdown при клике вне
+  // Close dropdown when clicking outside
   useEffect(() => {
     const close = () => setIsOpen(false)
     window.addEventListener('click', close)
     return () => window.removeEventListener('click', close)
   }, [])
 
+  // Handle language selection
   const handleSelect = (lang: string) => {
+    setCurrentLang(lang)
+    document.cookie = `lang=${lang}; path=/; max-age=31536`
     setIsOpen(false)
-    router.push(`/${lang}${basePath}`)
+    router.refresh()
   }
 
+  // Toggle menu
   const toggleMenu = (e: React.MouseEvent) => {
     e.stopPropagation()
     setIsOpen((prev) => !prev)
