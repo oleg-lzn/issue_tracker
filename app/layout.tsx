@@ -2,11 +2,17 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
+import { dir } from 'i18next'
+import { languages } from '../i18n/settings'
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
 })
+
+export async function generateStaticParams() {
+  return languages.map((lng) => ({ lng }))
+}
 
 export const metadata: Metadata = {
   title: 'Issue Tracker',
