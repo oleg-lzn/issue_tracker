@@ -38,10 +38,15 @@ export const getUserByEmail = async (email: string) => {
 
 export const getIssues = async () => {
   try {
+    const currentUser = await getCurrentUser()
+    if (!currentUser) {
+      return []
+    }
     const result = await db.query.issues.findMany({
       with: {
         user: true,
       },
+      where: eq(issues.userId, currentUser.id),
       orderBy: (issues, { desc }) => [desc(issues.createdAt)],
     })
     return result
