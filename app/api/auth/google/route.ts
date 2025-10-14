@@ -5,9 +5,7 @@ export async function GET() {
 
   const options = {
     client_id: process.env.GOOGLE_CLIENT_ID!,
-    redirect_uri:
-      process.env.GOOGLE_REDIRECT_URI! ||
-      'http://localhost:3000/api/auth/google/callback',
+    redirect_uri: process.env.GOOGLE_REDIRECT_URI!,
     response_type: 'code',
     scope: 'openid email profile',
     access_type: 'offline',
