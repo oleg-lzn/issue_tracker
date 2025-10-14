@@ -7,17 +7,19 @@ import { Trash2Icon } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { deleteIssue } from '@/app/actions/issues'
 import { useClientTranslation } from '@/i18n/client'
-import { getLangFromCookie } from '@/i18n/initClientFunction'
 
 interface DeleteIssueButtonProps {
   id: number
+  lang: string
 }
 
-export default function DeleteIssueButton({ id }: DeleteIssueButtonProps) {
+export default function DeleteIssueButton({
+  id,
+  lang,
+}: DeleteIssueButtonProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [showConfirm, setShowConfirm] = useState(false)
-  const lang = getLangFromCookie()
   const { t } = useClientTranslation(lang)
 
   const handleDelete = async () => {
@@ -31,7 +33,6 @@ export default function DeleteIssueButton({ id }: DeleteIssueButtonProps) {
 
         toast.success(t('Issue deleted successfully'))
         router.push('/dashboard')
-        router.refresh()
       } catch (error) {
         toast.error(t('Failed to delete issue'))
         console.error('Error deleting issue:', error)

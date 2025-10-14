@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation'
 import Badge from '@/app/components/ui/Badge'
 import Button from '@/app/components/ui/Button'
 import { ArrowLeftIcon, Edit2Icon } from 'lucide-react'
-import DeleteIssueButton from '../../components/DeleteIssueButton'
+import DeleteIssueButton from '@/app/components/DeleteIssueButton'
 import { initI18n } from '@/i18n/server'
 import { initFunction } from '@/i18n/initFunction'
 
@@ -76,7 +76,7 @@ export default async function IssuePage({
                 </span>
               </Button>
             </Link>
-            <DeleteIssueButton id={parseInt(id)} />
+            <DeleteIssueButton id={parseInt(id)} lang={lang} />
           </div>
         </div>
       </div>

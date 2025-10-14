@@ -1,4 +1,3 @@
-// app/api/issue/[id]/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/db'
 import { issues } from '@/db/schema'

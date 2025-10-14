@@ -4,11 +4,9 @@ import { LogOutIcon } from 'lucide-react'
 import { useTransition } from 'react'
 import { signOut } from '@/app/actions/auth'
 import { useClientTranslation } from '@/i18n/client'
-import { getLangFromCookie } from '@/i18n/initClientFunction'
 
-export default function SignOutButton() {
+export default function SignOutButton({ lang }: { lang: string }) {
   const [isPending, startTransition] = useTransition()
-  const lang = getLangFromCookie()
   const { t } = useClientTranslation(lang)
 
   const handleSignOut = () => {

@@ -2,7 +2,6 @@ import { NextResponse, NextRequest } from 'next/server'
 import { db } from '@/db'
 import { issues, IssueSchema } from '@/db/schema'
 import { getCurrentUser } from '@/lib/dal'
-import { eq } from 'drizzle-orm'
 
 export const GET = async (req: NextRequest) => {
   try {

@@ -17,7 +17,7 @@ export default async function Navigation() {
           className="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
         >
           <span className="hidden md:inline">Issue Tracker</span>
-          <span className="md:hidden">M</span>
+          {/* <span className="md:hidden">M</span> */}
         </Link>
       </div>
 

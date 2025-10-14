@@ -104,5 +104,6 @@
   "An error occurred": "שגיאה במהלך הפעולה",
   "Issue tracking": "מעקב משימות",
   "simplified": "מפושט",
-  "A minimal and elegant issue tracking tool for modern teams. Manage your projects with ease.": "מעקב משימות מפושט ומעוגן לצוותים מודרניים. נהל את הפרויקטים שלך בקלות."
+  "A minimal and elegant issue tracking tool for modern teams. Manage your projects with ease.": "מעקב משימות מפושט ומעוגן לצוותים מודרניים. נהל את הפרויקטים שלך בקלות.",
+  "A modern project management tool built with Next.js.": "כלי ניהול פרויקטים מודרני שנבנה עם Next.js."
 }

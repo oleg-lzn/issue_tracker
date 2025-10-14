@@ -11,6 +11,5 @@ export const getOptions = (lng = fallbackLng, ns = defaultNS) => ({
 })
 
 export function getDirection(lng: string) {
-  const rtlLangs = ['he']
-  return rtlLangs.includes(lng) ? 'rtl' : 'ltr'
+  return lng === 'he' ? 'rtl' : 'ltr'
 }

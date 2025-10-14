@@ -4,8 +4,6 @@ import { db } from '@/db'
 import { issues, IssueSchema } from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import { getCurrentUser } from '@/lib/dal'
-import { mockDelay } from '@/lib/utils'
-import { revalidateTag } from 'next/cache'
 import { z } from 'zod'
 
 export type IssueData = z.infer<typeof IssueSchema>
@@ -46,8 +44,6 @@ export const createIssue = async (data: IssueData) => {
       userId: validatedData.userId,
     })
 
-    revalidateTag('issues')
-
     return {
       success: true,
       message: 'Issue created',
@@ -67,7 +63,6 @@ export const updateIssue = async (
   data: Partial<IssueData>
 ): Promise<ActionResponse> => {
   try {
-    await mockDelay(500)
     const user = await getCurrentUser()
 
     if (!user) {
@@ -94,15 +89,6 @@ export const updateIssue = async (
       Object.entries(validatedData).filter(([_, value]) => value !== undefined)
     )
 
-    // if (validatedData.title !== undefined)
-    //   updateData.title = validatedData.title
-    // if (validatedData.description !== undefined)
-    //   updateData.description = validatedData.description
-    // if (validatedData.status !== undefined)
-    //   updateData.status = validatedData.status
-    // if (validatedData.priority !== undefined)
-    //   updateData.priority = validatedData.priority
-
     // update an issue
     await db.update(issues).set(updateData).where(eq(issues.id, id))
 
@@ -112,17 +98,26 @@ export const updateIssue = async (
     }
   } catch (e) {
     console.error(e)
+    return {
+      success: false,
+      message: 'An error occured while updating the issue',
+      errors: ['Failed to update an issue'],
+    }
   }
 }
 
 export const deleteIssue = async (id: number) => {
   try {
-    await mockDelay(500)
     const user = await getCurrentUser()
     if (!user) {
-      throw new Error('Unauthorized')
+      return {
+        success: false,
+        message: 'Error finding a user',
+        errors: ['Error finding a user'],
+      }
     }
 
+    // delete issue
     await db.delete(issues).where(eq(issues.id, id))
 
     return {
@@ -131,5 +126,10 @@ export const deleteIssue = async (id: number) => {
     }
   } catch (e) {
     console.error(e)
+    return {
+      success: false,
+      message: 'An error occured while deleting the issue',
+      errors: ['Failed to delete an issue'],
+    }
   }
 }

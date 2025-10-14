@@ -1,9 +1,11 @@
 import { getCurrentUser } from '@/lib/dal'
 import { UserIcon } from 'lucide-react'
 import SignOutButton from './SignOutButton'
+import { initFunction } from '@/i18n/initFunction'
 
 const UserEmail = async () => {
   const user = await getCurrentUser()
+  const lang = await initFunction()
 
   return (
     <div className="space-y-1">
@@ -13,7 +15,7 @@ const UserEmail = async () => {
           {user?.email}
         </span>
       </div>
-      <SignOutButton />
+      <SignOutButton lang={lang} />
     </div>
   )
 }

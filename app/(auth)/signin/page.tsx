@@ -29,6 +29,7 @@ export default function SignInPage() {
   const router = useRouter()
   const lang = getLangFromCookie()
   const { t } = useClientTranslation(lang)
+
   // Use useActionState hook for the form submission action
   const [state, formAction, isPending] = useActionState<
     ActionResponse,

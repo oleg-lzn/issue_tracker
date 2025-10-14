@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Globe, ChevronDown } from 'lucide-react'
-import Button from '../components/ui/Button'
+import Button from './ui/Button'
 import { useRouter } from 'next/navigation'
 
 export default function LanguageSwitcher() {
