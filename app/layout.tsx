@@ -25,7 +25,9 @@ export default async function RootLayout({
 
   return (
     <html lang={lang} dir={dir}>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body
+        className={`${inter.variable} font-sans antialiased bg-white dark:bg-dark-base min-h-screen`}
+      >
         <Toaster position="top-right" />
         {children}
       </body>

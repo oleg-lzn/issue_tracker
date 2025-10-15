@@ -51,27 +51,31 @@ export default function LanguageSwitcher() {
     <div className="relative">
       <Button
         variant="outline"
-        size="md"
+        size="sm"
         onClick={toggleMenu}
-        className="flex items-center gap-2"
+        className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2"
       >
-        <Globe size={16} />
-        <span className="font-medium">{current?.code.toUpperCase()}</span>
+        <Globe size={14} className="sm:w-4 sm:h-4" />
+        <span className="font-medium hidden sm:inline">
+          {current?.code.toUpperCase()}
+        </span>
         <ChevronDown
-          size={14}
-          className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          size={12}
+          className={`transition-transform ${
+            isOpen ? 'rotate-180' : ''
+          } sm:w-3.5 sm:h-3.5`}
         />
       </Button>
 
       {isOpen && (
-        <ul className="absolute left-0 mt-2 w-26 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50">
+        <ul className="absolute right-0 mt-2 w-28 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50">
           {languages.map((lang) => (
             <li key={lang.code}>
               <button
                 onClick={() => handleSelect(lang.code)}
-                className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 ${
+                className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
                   currentLang === lang.code
-                    ? 'font-semibold text-purple-600'
+                    ? 'font-semibold text-purple-600 dark:text-purple-400'
                     : 'text-gray-700 dark:text-gray-200'
                 }`}
               >

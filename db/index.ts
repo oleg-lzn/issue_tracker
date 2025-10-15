@@ -10,4 +10,7 @@ export const db = process.env.VERCEL
       schema,
       casing: 'snake_case',
     })
-  : drizzlePostgres(process.env.DATABASE_URL!, { schema, casing: 'snake_case' })
+  : drizzlePostgres(process.env.LOCAL_DATABASE_URL!, {
+      schema,
+      casing: 'snake_case',
+    })
