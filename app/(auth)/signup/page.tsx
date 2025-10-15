@@ -64,8 +64,8 @@ export default function SignUpPage() {
         </h2>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white dark:bg-[#1A1A1A] py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-gray-100 dark:border-dark-border-subtle">
+      <div className="mt-8 mx-4 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white dark:bg-[#1A1A1A] py-8 px-4 shadow rounded-lg sm:px-10 border border-gray-100 dark:border-dark-border-subtle">
           <Form action={formAction} className="space-y-6">
             {state?.message && !state.success && (
               <FormError>{state.message}</FormError>
