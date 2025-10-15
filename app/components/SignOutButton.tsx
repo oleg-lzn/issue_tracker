@@ -21,8 +21,8 @@ export default function SignOutButton({ lang }: { lang: string }) {
       disabled={isPending}
       className="flex items-center w-full px-2 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors touch-manipulation"
     >
-      <LogOutIcon size={18} className="mr-2 flex-shrink-0" />
-      <span className="truncate">
+      <LogOutIcon size={18} className="mr-0 sm:mr-2 flex-shrink-0" />
+      <span className="truncate hidden sm:block">
         {isPending ? t('Signing out...') : t('Sign Out')}
       </span>
     </button>
