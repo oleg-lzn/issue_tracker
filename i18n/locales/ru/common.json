@@ -34,7 +34,6 @@
   "Contact Sales": "Связаться c нами",
   "Need a custom solution?": "Нужно индивидуальное решение?",
   "Contact our sales team to discuss your specific requirements.": "Свяжитесь с нашим отделом продаж, чтобы обсудить ваши конкретные требования.",
-  "Issue Tracking": "Отслеживание задач",
   "Intuitive UI": "Интуитивный интерфейс",
   "Collaboration": "Сотрудничество",
   "Custom Workflows": "Пользовательские процессы",
@@ -178,5 +177,10 @@
   "Questions About Terms?": "Вопросы по условиям?",
   "Read the complete terms document or contact us through GitHub issues for any legal questions.": "Прочитайте полный документ условий или свяжитесь с нами через GitHub issues для любых правовых вопросов.",
   "Full Terms Document": "Полный документ условий",
-  "Contact Us": "Связаться с нами"
+  "Contact Us": "Связаться с нами",
+  "Legal": "Правовые документы",
+  "Issue tracking simplified": "Отслеживание задач упрощено",
+  "Choose the plan that's right for you and your team": "Выберите план, который подходит вам и вашей команде",
+  "GitHub": "GitHub",
+  "Issue Tracker": "Трекер задач"
 }

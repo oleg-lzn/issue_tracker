@@ -24,7 +24,7 @@ export default async function RootLayout({
   const dir = getDirection(lang)
 
   return (
-    <html lang={lang} dir={dir}>
+    <html lang={lang} dir={dir} className="dark">
       <body
         className={`${inter.variable} font-sans antialiased bg-white dark:bg-dark-base min-h-screen`}
       >
