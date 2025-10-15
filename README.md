@@ -1,6 +1,14 @@
-# Mode - Issue Tracking System
+# Issue Tracker - Issue Tracking System
 
 Modern and intuitive issue tracking application for managing tasks and projects efficiently. Built with cutting-edge web technologies to provide a seamless user experience.
+
+## 🚀 Live Demo
+
+Experience the application in action:
+
+**[🔗 View Live Demo](https://issue-tracker-one-chi.vercel.app/)**
+
+Try out all the features including authentication, issue management, and multi-language support directly in your browser.
 
 ## ✨ Features
 
