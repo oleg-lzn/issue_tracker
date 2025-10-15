@@ -45,7 +45,7 @@ const config = {
     },
   },
   plugins: [],
-  darkMode: 'class',
+  darkMode: 'media',
 } satisfies Config
 
 export default config
