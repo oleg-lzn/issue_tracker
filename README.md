@@ -313,7 +313,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Internationalization with [i18next](https://www.i18next.com/)
 - UI inspired by modern project management tools
 - Styling with [Tailwind CSS](https://tailwindcss.com/)
-
----
-
-**Mode** - Streamline your workflow, track progress efficiently.
