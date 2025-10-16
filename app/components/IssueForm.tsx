@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState } from 'react'
+import { useActionState, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Issue, ISSUE_STATUS, ISSUE_PRIORITY } from '@/db/schema'
 import Button from './ui/Button'
@@ -20,6 +20,7 @@ import {
 } from '@/app/actions/issues'
 import { useClientTranslation } from '@/i18n/client'
 import { getLangFromCookie } from '@/i18n/initClientFunction'
+import CallOpenAi from '@/lib/gpt'
 
 interface IssueFormProps {
   issue?: Issue
@@ -41,6 +42,7 @@ export default function IssueForm({
   const router = useRouter()
   const lang = getLangFromCookie()
   const { t } = useClientTranslation(lang)
+  const [description, setDescription] = useState(issue?.description || '')
   // Use useActionState hook for the form submission action
   const [state, formAction, isPending] = useActionState<
     ActionResponse,
@@ -49,7 +51,7 @@ export default function IssueForm({
     // Extract data from form
     const data = {
       title: formData.get('title') as string,
-      description: formData.get('description') as string,
+      description: description,
       status: formData.get('status') as
         | 'backlog'
         | 'todo'
@@ -124,9 +126,11 @@ export default function IssueForm({
         <FormTextarea
           id="description"
           name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           placeholder={t('Describe the issue...')}
           rows={4}
-          defaultValue={issue?.description || ''}
+          // defaultValue={issue?.description || ''}
           disabled={isPending}
           aria-describedby="description-error"
           className={state?.errors?.description ? 'border-red-500' : ''}
@@ -136,6 +140,15 @@ export default function IssueForm({
             {state.errors.description[0]}
           </p>
         )}
+        <Button
+          onClick={async () => {
+            const improved = await CallOpenAi(description)
+            if (!improved) return
+            setDescription(improved)
+          }}
+        >
+          Improve with AI
+        </Button>
       </FormGroup>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

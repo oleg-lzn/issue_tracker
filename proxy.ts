@@ -22,12 +22,12 @@ export function proxy(request: NextRequest) {
   }
 
   if (pathname.startsWith('/api')) {
-    const authHeader = request.headers.get('Authorization')
-    if (!authHeader) {
+    const auth_token = request.cookies.get('auth_token')
+    if (!auth_token) {
       return NextResponse.json(
         {
           success: false,
-          message: 'Auth header is required',
+          message: 'Auth token is required',
         },
         { status: 401 }
       )
